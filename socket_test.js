@@ -8,7 +8,7 @@ net.createServer(function(sock) {
         var rdt = data;
         var srdt = rdt.toString();
         var ordt = JSON.parse(srdt);
-        console.log('DATA ' + sock.remoteAddress + ': 'ordt);
+        console.log('DATA ' + sock.remoteAddress + ': 'srdt);
       //  sock.write('You said "' + data + '"');
     });
 
