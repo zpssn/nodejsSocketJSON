@@ -17,6 +17,6 @@ net.createServer(function(sock) {
             sock.remoteAddress + ' ' + sock.remotePort);
     });
 
-}).listen(PORT, HOST);
+}).listen(PORT);
 
 console.log('Server listening on ' + HOST +':'+ PORT);
