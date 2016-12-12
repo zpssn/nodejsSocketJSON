@@ -9,12 +9,12 @@ net.createServer(function(sock) {
     // 我们获得一个连接 - 该连接自动关联一个socket对象
     console.log('CONNECTED: ' +
         sock.remoteAddress + ':' + sock.remotePort);
-      //  sock.write("success");
+        sock.write("success");
     sock.on('data', function(data) {
 		var rdt = data;
     var srdt = rdt.toString();
     console.log(srdt);
-    var ordt = JSON.parse(srdt);
+     var ordt = JSON.parse(srdt);
       sock.write('You said "' + srdt + '"');
     });
     sock.on('error',function (exc) {
