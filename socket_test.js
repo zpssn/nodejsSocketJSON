@@ -16,7 +16,7 @@ net.createServer(function(sock) {
     console.log(srdt);
      var ordt = JSON.parse(srdt);
      console.log("type:"+ordt.type);
-     console.log("MT:"+ordt.MT+"  MW:"+ordt.MW+"   OT:"ordt.OT+"   OW:"+ordt.OW+"   LT:"ordt.LT+"   from:"ordt.from);
+     console.log("MT:"+ordt.MT+"  MW:"+ordt.MW+"   OT:"+ordt.OT+"   OW:"+ordt.OW+"   LT:"+ordt.LT+"   from:"+ordt.from);
       // sock.write('You said "' + srdt + '"');
     });
     sock.on('error',function (exc) {
