@@ -21,7 +21,7 @@ net.createServer(function(sock) {
      console.log("type:"+ordt.type);
      console.log("MT:"+ordt.MT+"  MW:"+ordt.MW+"   OT:"+ordt.OT+"   OW:"+ordt.OW+"   LT:"+ordt.LT+"   from:"+ordt.from);
      client = usrDB.connect();
-     usrDB.insertdataFun(client,ordt.from,ordt.MT,ordt.MW,ordt.OT,ordt.OW,ordt.LT,"0","0",function(err, results){
+     usrDB.insertnormaldataFun(client,ordt.from,ordt.MT,ordt.MW,ordt.OT,ordt.OW,ordt.LT,"0","0",function(err, results){
     				 if (err) {
                   //  res.locals.error = err;
 
@@ -45,7 +45,7 @@ net.createServer(function(sock) {
 
   router.get("/creatdatatable",function(req,res){
     client = usrDB.connect();
-    usrDB.creatdataTable(client,"3301011aa",function(err,result){
+    usrDB.creatdataTable(client,"normaldata",function(err,result){
       if(err){ 										//错误就返回给原post处（login.html) 状态码为500的错误
   			res.send(500);
   			console.log(err);
@@ -57,6 +57,21 @@ net.createServer(function(sock) {
   		//	res.redirect("/login");
   		}
     });
+    });
+    router.get("/getdata",function(req,res){
+      client = usrDB.connect();
+      usrDB.querydataBySNandTimeFun(client,"3301011aa","2016-12-17 10:41:00","2016-12-17 10:45:00",function(err,result){
+        if(err){ 										//错误就返回给原post处（login.html) 状态码为500的错误
+    			res.send(500);
+    			console.log(err);
+    		}else{ 								//查询不到用户名匹配信息，则用户名不存在
+          console.log(result);
+        //  req.session.error = '用户名不存在';
+        //  res.locals.error = '用户不存在';
+    			res.send(result);							//	状态码返回404
+    		//	res.redirect("/login");
+    		}
+      });
 
     console.log('Server listening on '+':'+ PORT);
   });
